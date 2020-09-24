@@ -60,12 +60,16 @@ let config = {
                 ]
             },
             {
-                test: /\.png$/,
+                test: /\.(jpg|png|gif)$/,
                 use: [
                     {
                         loader: 'file-loader',
                         options: {
-                            name: './assets/images/[name].[ext]'
+                            name: '[name].[ext]',
+                            outputPath : 'assets/images/',
+                            publicPath : function(path){
+                                return '../' + path;
+                            }
                         }
                     }
                 ]
