@@ -33,6 +33,12 @@ h1
   margin: 0
 .description
   font-size: 16px
+.stage-count
+  font-size: 16px
+  font-weight: bold
+.stage-title
+  font-size: 16px
+  font-weight: bold
 .box-container
   display: flex
   justify-content: center
