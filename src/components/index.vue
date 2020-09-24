@@ -1,22 +1,33 @@
 <template lang="pug">
 .container
-  h1.hello
-    | hello
-  p
-    | {{greeting}}
+  section
+    p.description
+      | 1日1回限定! 感覚を研ぎ澄ませ!
+    h1
+      | サイキック
+    p.stage-count
+      | Stage {{stage}}
+    p.stage-title
+      | {{content}}の画像が入っている箱を選べ!
 </template>
-
-<style lang="sass">
-.hello
-  color: #789
-</style>
 
 <script>
 export default {
   data() {
     return {
-      greeting: 'hello!'
+      stage: 1,
+      content: '犬',
     }
   }
 }
 </script>
+
+<style lang="sass" scoped>
+.container
+  text-align: center
+h1
+  font-size: 48px
+  margin: 0
+.description
+  font-size: 16px
+</style>
