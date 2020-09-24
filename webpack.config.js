@@ -13,6 +13,9 @@ let config = {
         ],
         styles: [
             path.resolve(__dirname, 'assets/sass/styles.sass')
+        ],
+        images: [
+            path.resolve(__dirname, 'assets/images/box.png')
         ]
     },
 
@@ -52,6 +55,17 @@ let config = {
                         loader: 'sass-loader',
                         options: {
                             indentedSyntax: true
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.png$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: './assets/images/[name].[ext]'
                         }
                     }
                 ]
