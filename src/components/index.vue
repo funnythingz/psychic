@@ -9,6 +9,9 @@
       | Stage {{stage}}
     p.stage-title
       | {{content}}の画像が入っている箱を選べ!
+    .box-container
+      .box
+      .box
 </template>
 
 <script>
@@ -30,4 +33,13 @@ h1
   margin: 0
 .description
   font-size: 16px
+.box-container
+  display: flex
+  justify-content: center
+.box
+  width: 136px
+  height: 123px
+  display: block
+  margin: 10px 20px
+  background-image: url('~/assets/images/box.png')
 </style>
