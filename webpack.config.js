@@ -15,7 +15,10 @@ let config = {
             path.resolve(__dirname, 'assets/sass/styles.sass')
         ],
         images: [
-            path.resolve(__dirname, 'assets/images/box.png')
+            path.resolve(__dirname, 'assets/images/description.png'),
+            path.resolve(__dirname, 'assets/images/logo.png'),
+            path.resolve(__dirname, 'assets/images/card1.png'),
+            path.resolve(__dirname, 'assets/images/card2.png')
         ]
     },
 
