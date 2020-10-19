@@ -155,6 +155,8 @@ export default {
 .card-wrapper
   position: absolute
   top: 0
+  left: 0
+  right: 0
   > .text
     font-size: 48px
     font-weight: bold
