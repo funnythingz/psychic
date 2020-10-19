@@ -11,8 +11,8 @@
     p.stage-title
       | {{content}}の画像が入っている箱を選べ!
     .box-container
-      .card1(@click="lottery(0)")
-      .card2(@click="lottery(1)")
+      .card1(@click="lottery(0)" :class="{'is-flipped': flip1}")
+      .card2(@click="lottery(1)" :class="{'is-flipped': flip2}")
     .status-wrapper(v-if="psychicCount() >= 1")
       p.status
         | 現在のサイキック回数
@@ -43,6 +43,8 @@ export default {
       next: true,
       stage: 1,
       content: '犬',
+      flip1: false,
+      flip2: false,
       openCard: {
         flag: false,
         message: 'Bad!!',
@@ -52,13 +54,24 @@ export default {
   },
   methods: {
     lottery(selectNum) {
-      if (shuffle([0, 1])[0] === selectNum) {
-        this.stage += 1;
-        this.flipCard(true)
+      if(selectNum === 0) {
+        this.flip1 = true
       } else {
-        this.flipCard()
-        this.next = false
+        this.flip2 = true
       }
+      (self => {
+        setTimeout(() => {
+          if (shuffle([0, 1])[0] === selectNum) {
+            self.stage += 1;
+            self.flipCard(true)
+          } else {
+            self.flipCard()
+            self.next = false
+          }
+          this.flip1 = false
+          this.flip2 = false
+        }, 1000)
+      })(this);
     },
     reset() {
       this.next = true
@@ -67,6 +80,8 @@ export default {
       this.openCard.flag = false
       this.openCard.message = 'Bad!!'
       this.openCard.imagePath = '/assets/images/cat.jpg'
+      this.flip1 = false
+      this.flip2 = false
     },
     flipCard(status) {
       this.openCard.flag = true
@@ -137,6 +152,10 @@ export default {
   height: 203px
   display: block
   margin: 10px 20px
+  transition: transform 1s
+  transform-style: preserve-3d
+  &.is-flipped
+    transform: rotateY(180deg)
 
 .card1
   background-image: url('~/assets/images/card1.png')
