@@ -18,7 +18,9 @@ let config = {
       path.resolve(__dirname, 'assets/images/description.png'),
       path.resolve(__dirname, 'assets/images/logo.png'),
       path.resolve(__dirname, 'assets/images/card1.png'),
-      path.resolve(__dirname, 'assets/images/card2.png')
+      path.resolve(__dirname, 'assets/images/card2.png'),
+      path.resolve(__dirname, 'assets/images/cat.jpg'),
+      path.resolve(__dirname, 'assets/images/dog.jpg')
     ]
   },
 
