@@ -42,12 +42,12 @@
             | {{psychicCount()}}
           | 回
     section.card-wrapper(v-if="openCard.flag")
-      .text
-        | {{openCard.message}}
       .card-answer
+        .text
+          | {{openCard.message}}
         img.photo-animal(:src="openCard.imagePath")
         .message(v-if="next")
-          p.reset(@click="openCard.flag = false")
+          p.next(@click="openCard.flag = false")
             | Next Challenge!
         .message(v-if="!next")
           p.next(@click="result = true")
@@ -141,7 +141,7 @@ export default {
 
 .title
   position: relative
-  margin: 50px 0 0
+  margin: 20px 0 0
   height: 160px
 
 .description
@@ -226,15 +226,17 @@ export default {
   top: 0
   left: 0
   right: 0
-  > .text
-    font-size: 48px
-    font-weight: bold
 
 .card-answer
   background-color: #fff
-  padding: 100px 15px 50px
+  padding: 50px 15px
   margin: 15px
   border-radius: 16px
+  > .text
+    font-size: 48px
+    font-weight: bold
+    color: #345
+    margin: 0 0 10px
 
 .photo-animal
   width: 100%
