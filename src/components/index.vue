@@ -1,37 +1,57 @@
 <template lang="pug">
 .container
-  section
-    .title
-      p.description
-        | 1日1回限定! 感覚を研ぎ澄ませ!
-      h1.logo
-        | サイキック
-    p.stage-count
-      | Stage {{stage}}
-    p.stage-title
-      | {{content}}の画像が入っている箱を選べ!
-    .box-container
-      .card1(@click="lottery(0)" :class="{'is-flipped': flip1}")
-      .card2(@click="lottery(1)" :class="{'is-flipped': flip2}")
-    .status-wrapper(v-if="psychicCount() >= 1")
+  section(v-if="result")
+    h1.result-title
+      | Result!
+    .heading
+      | 道端の超能力者
+    .status-wrapper
       p.status
-        | 現在のサイキック回数
+        | サイキック合計数
         br
         span.psychic-count
           | {{psychicCount()}}
-        | 回
-  section.card-wrapper(v-if="openCard.flag")
-    .text
-      | {{openCard.message}}
-    .card-answer
-      img.photo-animal(:src="openCard.imagePath")
-      .message(v-if="next")
-        p.reset(@click="openCard.flag = false")
-          | Next Challenge!
-      .message(v-if="!next")
-        //TODO: result画面を出す
-        p.reset(@click="reset()")
-          | 最初からやりなおす
+        |  回
+    .sns-share
+      p
+        | 友達にあなたの結果を共有しよう！
+      button.btn(@click="todo()")
+        | Twitterでシェア
+    .retry
+      p.reset(@click="reset()")
+        | 最初からやりなおす
+  section(v-else)
+    section
+      .title
+        p.description
+          | 1日1回限定! 感覚を研ぎ澄ませ!
+        h1.logo
+          | サイキック
+      p.stage-count
+        | Stage {{stage}}
+      p.stage-title
+        | {{content}}の画像が入っている箱を選べ!
+      .box-container
+        .card1(@click="lottery(0)" :class="{'is-flipped': flip1}")
+        .card2(@click="lottery(1)" :class="{'is-flipped': flip2}")
+      .status-wrapper(v-if="psychicCount() >= 1")
+        p.status
+          | 現在のサイキック回数
+          br
+          span.psychic-count
+            | {{psychicCount()}}
+          | 回
+    section.card-wrapper(v-if="openCard.flag")
+      .text
+        | {{openCard.message}}
+      .card-answer
+        img.photo-animal(:src="openCard.imagePath")
+        .message(v-if="next")
+          p.reset(@click="openCard.flag = false")
+            | Next Challenge!
+        .message(v-if="!next")
+          p.next(@click="result = true")
+            | 最終結果へ
 </template>
 
 <script>
@@ -47,9 +67,10 @@ export default {
       flip2: false,
       openCard: {
         flag: false,
-        message: 'Bad!!',
+        message: 'Bad...',
         imagePath: '/assets/images/cat.jpg'
-      }
+      },
+      result: false
     }
   },
   methods: {
@@ -78,10 +99,11 @@ export default {
       this.stage = 1
       this.content = '犬'
       this.openCard.flag = false
-      this.openCard.message = 'Bad!!'
+      this.openCard.message = 'Bad...'
       this.openCard.imagePath = '/assets/images/cat.jpg'
       this.flip1 = false
       this.flip2 = false
+      this.result = false
     },
     flipCard(status) {
       this.openCard.flag = true
@@ -91,12 +113,15 @@ export default {
           this.openCard.imagePath = '/assets/images/dog.jpg'
           break
         default:
-          this.openCard.message = 'Bad!!'
+          this.openCard.message = 'Bad...'
           this.openCard.imagePath = '/assets/images/cat.jpg'
       }
     },
     psychicCount() {
       return this.stage - 1
+    },
+    todo() {
+      alert('TODO')
     }
   }
 }
@@ -106,6 +131,13 @@ export default {
 .container
   text-align: center
   position: relative
+
+.result-title
+  font-size: 48px
+  margin: 20px 0 10px
+
+.heading
+  font-size: 28px
 
 .title
   position: relative
@@ -122,6 +154,16 @@ export default {
   margin: 0 auto
   background-image: url('~/assets/images/description.png')
   color: transparent
+
+.btn
+  background-color: #fff
+  padding: 10px
+  text-align: center
+  border-radius: 24px
+  width: 85%
+  border: solid 1px transparent
+  color: #1DA1F2
+  font-weight: bold
 
 .logo
   position: absolute
@@ -166,10 +208,18 @@ export default {
 .goodbye
   font-size: 18px
 
-.reset
+
   font-weight: bold
   text-decoration: underline
   color: #345
+
+.next
+  font-weight: bold
+  text-decoration: underline
+  color: #345
+
+.reset
+  text-decoration: underline
 
 .card-wrapper
   position: absolute
@@ -198,4 +248,8 @@ export default {
 
 .psychic-count
   font-size: 24px
+
+.sns-share
+  margin: 40px 0 20px
+
 </style>
