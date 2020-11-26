@@ -4,6 +4,7 @@
   "main": "index.js",
   "dependencies": {
     "file-loader": "^6.1.0",
+    "glob": "^7.1.6",
     "vue": "^2.5.16",
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12",
