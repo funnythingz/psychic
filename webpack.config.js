@@ -3,7 +3,10 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const { VueLoaderPlugin } = require('vue-loader')
 const HtmlWebPackPlugin = require("html-webpack-plugin")
+const glob = require("glob")
 
+//const entries = glob.sync("./src/**/*.js");
+const entryImages = glob.sync(path.resolve(__dirname, 'assets/images/**/*.*'));
 
 let config = {
 
@@ -14,14 +17,7 @@ let config = {
     styles: [
       path.resolve(__dirname, 'assets/sass/styles.sass')
     ],
-    images: [
-      path.resolve(__dirname, 'assets/images/description.png'),
-      path.resolve(__dirname, 'assets/images/logo.png'),
-      path.resolve(__dirname, 'assets/images/card1.png'),
-      path.resolve(__dirname, 'assets/images/card2.png'),
-      path.resolve(__dirname, 'assets/images/cat.jpg'),
-      path.resolve(__dirname, 'assets/images/dog.jpg')
-    ]
+    images: entryImages
   },
 
   output: {
